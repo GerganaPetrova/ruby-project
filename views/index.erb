@@ -1,3 +1,7 @@
-<p>
-  Потни топки, копеле!
-</p>
+<div class="span8 offset3">
+  <%= quote = @quotes.sample %>
+    <blockquote>
+      <p><i><%= quote.text %></i></p>
+      <small><%= quote.book.author %> - <%= quote.book.title %></small>
+    </blockquote>
+</div>

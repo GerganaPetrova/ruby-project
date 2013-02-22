@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head> 
-    <title> SO UGLY! </title>
+    <title> Allons-y! </title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <script type="text/javascript" src="/javascript/jquery-1.9.1.js"></script>
   </head>
 
   <body>
-
     <div class="navbar navbar-inverse">
-     <div class="navbar-inner">
-      <div class="container">
-
-       <form class="navbar-search pull-right">
-        <input type="text" class="search-query" placeholder="Search">
-       </form>
-
-       <a class="brand" href="/"> Home </a>
-       <a class="brand" href="~/PublicBooks"> Books </a>
-
-
-        </div>
+      <div class="navbar-inner"> 
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+         <% if session[:user] %>
+          <li><a href="/upload">Upload</a></li>
+          <li><a href="/books">Books</a></li>
+          <li><a href="/quotes">Quotes</a></li> 
+          <li><a href="/reviews">Reviews</a></li> 
+         <% end %> 
+        </ul>
+        <ul class="nav pull-right">
+          <% if session[:user] %>
+             <li><a href="/logout">Log Out</a></li>
+          <% else %>
+             <li><a href="/login">Log In </a></li>
+             <li><a href="/signup"> Sing Up </a></li>
+          <% end %>
+          </ul>
       </div>
     </div>
-
-    <form class="form-horizontal">
-       <div class="control-group">
-         <label class="control-label" for="inputEmail">Email</label>
-         <div class="controls">
-          <input type="text" id="inputEmail" placeholder="Email">
-         </div>
-       </div>
-       <div class="control-group">
-         <label class="control-label" for="inputPassword">Password</label>
-         <div class="controls">
-           <input type="password" id="inputPassword" placeholder="Password">
-         </div>
-       </div>
-     <div class="control-group">
-       <div class="controls">
-         <label class="checkbox">
-           <input type="checkbox"> Remember me </label>
-           <button type="submit" class="btn">Sign in</button>
-       </div>
-     </div>
-    </form>
+    <%= yield %>
 
   </body>
 </html>

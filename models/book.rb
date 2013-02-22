@@ -1,7 +1,11 @@
-class Book
-  attr_reader :title, :author
+require 'sequel'
+Sequel::Model.db = Sequel.sqlite './db/db.sqlite'
 
-  def initialize(title, author)
-    @title, @author = title, author
+class Book < Sequel::Model
+ many_to_one :user
+
+  def page(number)
+    page = self[:text].split(/\n+/).each_slice(25).to_a
+    page[number-1]
   end
 end
