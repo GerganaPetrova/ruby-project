@@ -35,6 +35,7 @@ class User < Sequel::Model
   def validate
     super
     validates_presence [:username, :password, :email]
+    validates_unique [:username]
     validates_length_range 5...20, :username
   end
 

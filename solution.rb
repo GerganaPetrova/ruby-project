@@ -23,6 +23,7 @@ post '/login' do
   user = User.authenticate(params[:username], params[:password])
   if not user
     erb :login, locals: {:login_fail => true}
+    redirect '/login'
   else
     session[:user] = user
     redirect '/'
